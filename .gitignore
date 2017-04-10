@@ -87,3 +87,12 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# Generated model JSONs
+*.json
+
+# Posts
+*.posts
+
+# Praw config
+praw.ini
