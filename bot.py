@@ -14,8 +14,12 @@ model = markovify.Text.from_json(model_json)
 for c in reddit.subreddit("all").stream.comments():
     if "+indianpeoplesim" in c.body or "+ips" in c.body:
         print("Comment from", c.author.name)
-        text = model.make_sentence()
-        text += "\r\n\r\n*****\r\n\r\nThis is a bot. Contact /u/ur_0 for help."
+        text = ""
+        while len(text) == 0:
+            new = model.make_sentence(tries=100)
+            if not isinstance(new, type(None)):
+                text += new
+        text += "\r\n\r\n*****\r\n\r\nThis is a bot. Contact /u/ur_0 for help. [Source code](https://github.com/ur0/ips)."
         try:
             c.reply(text)
             print("Replied successfully")

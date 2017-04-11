@@ -6,7 +6,7 @@ with open(sys.argv[1], "r") as f:
     text = f.read()
 
 # Build the model.
-text_model = markovify.Text(text)
+text_model = markovify.Text(text, state_size=5)
 print("Model ready!")
 
 # Dump the model to disk

@@ -10,9 +10,9 @@ sources += reddit.subreddit("indiaspeaks").top("all", limit=200)
 
 with open(sys.argv[1], "w+") as f:
     for post in sources:
-            f.write(post.selftext)
+            f.write(post.selftext.encode("utf-8").strip())
             f.write("\n")
             post.comments.replace_more(limit=0)
             for comment in post.comments.list():
-                f.write(comment.body)
+                f.write(comment.body.encode("utf-8").strip())
                 f.write("\n")
